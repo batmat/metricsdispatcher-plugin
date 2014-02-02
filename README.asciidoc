@@ -1,0 +1,30 @@
+Metrics Publisher Jenkins Plugin
+---------------------------------
+Metrics Publisher is a Jenkins Plugin designed to run a regular basis to push metrics into any monitoring system 
+(Graphite, Nagios, whatever, warning though : yet to be done :-)).
+
+The goal is to provide a set of standard typical metrics (idle executors/total per label, etc.).
+
+Extensibility
+-------------
+The plugin was also designed with extensibility in mind.
+Though still in its very very early stage, it's already possible to externally contribute both new metrics, 
+and new publishers (foobar-monitoring-system, whatever) through the standard Jenkins extension system.
+
+Just implement (in your plugin which doesn't need to be known by metricspublisher at compile-time) as an @Extension :
+* MetricsProvider class for providing custom metrics (if the metric you need is not 
+  specific to your shop, then please consider contributing it to the standard metrics set directly included in the plugin), 
+* and MetricsPublisher for publication.
+
+To learn more about the Jenkins Extension points, please read 
+https://wiki.jenkins-ci.org/display/JENKINS/Defining+a+new+extension+point
+
+TODO/Ideas (May or may not be implemented, will mainly depend on the demand)
+-----------------------------------------------------------------------------
+* Add a lot more standard/generic metrics (your help is welcome :-))
+* Currently, the plugin will push *all* the found metrics to *all* the registered publisher.
+  We may want to only push some selected metrics to a subset of the publishers.
+* Graphical configuration
+* More to come.
+
+Ping me on link:http://twitter.com/bmathus[@bmathus]
